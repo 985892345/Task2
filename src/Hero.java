@@ -24,7 +24,7 @@ public class Hero implements Fight{
             }
             i++;
             System.out.println(name + "打了" + monster.name + i + "次");
-            monster.fight(this, hp, atk, def, name);
+            monster.fight(this, hp, atk, name);
         }
     }
 }

@@ -15,7 +15,7 @@ public class Monster{
     }
 
     private int i = 0;
-    public void fight(Fight fight, int hp, int atk, int def, String name) {
+    public void fight(Fight fight, int hp, int atk, String name) {
         if(this.hp > 0 && hp > 0){
             if(atk > this.def){
                 this.hp -= atk - this.def;
