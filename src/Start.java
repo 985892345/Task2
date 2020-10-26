@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Start{
 
-    public static void main(String args[]){
+    public static void main(String[] args){
         Monster monster = new Monster();
         Hero hero = new Hero(monster);
         hero.setAttribute(inputName(), inputAttribute());
@@ -13,8 +13,7 @@ public class Start{
 
     public static String inputName(){
         System.out.println("请输入英雄名字：");
-        String name = new Scanner(System.in).next();
-        return name;
+        return new Scanner(System.in).next();
     }
 
     public static int[] inputAttribute(){
