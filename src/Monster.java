@@ -1,30 +1,30 @@
-public class Monster{
-    public String name;//名字
-    public int hp;//血量
-    public int atk;//攻击力
-    public int def;//防御力
+public class Monster implements BeBeatBy{
+    private String name;//名字
+    private int hp;//血量
+    private int atk;//攻击力
+    private int def;//防御力
+    private Hero hero;
 
-    public void setName(String name){
+    public Monster(Hero hero, String name){
+        this.hero = hero;
         this.name = name;
     }
-
     public void setAttribute(int[] attribute){
         hp = attribute[0];
         atk = attribute[1];
         def = attribute[2];
     }
-
     private int i = 0;
-    public void fight(Fight fight, int hp, int atk, String name) {
-        if(this.hp > 0 && hp > 0){
-            if(atk > this.def){
-                this.hp -= atk - this.def;
+    public void beBeatBy() {
+        if(hp > 0 && hero.hp > 0){
+            if(hero.atk > def){
+                hp -= hero.atk - def;
             }else{
-                this.hp--;
+                hp--;
             }
             i++;
-            System.out.println(this.name + "打了" + name + i + "次");
-            fight.fight();
+            System.out.println(hero.name + "打了" + name + i + "次");
+            hero.beBeatBy(this, hp, atk, name);
         }
     }
 }

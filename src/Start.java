@@ -3,12 +3,12 @@ import java.util.Scanner;
 public class Start{
 
     public static void main(String[] args){
-        Monster monster = new Monster();
-        Hero hero = new Hero(monster);
+        Hero hero = new Hero();
+        Monster monster = new Monster(hero, "小兵");
         hero.setAttribute(inputName(), inputAttribute());
-        monster.setName("小兵");
+        System.out.println("请输入野怪名血量、攻击力、防御力");
         monster.setAttribute(inputAttribute());
-        hero.fight();
+        monster.beBeatBy();
     }
 
     public static String inputName(){
