@@ -3,6 +3,8 @@ public class Hero implements Fight{
     private int hp;//血量
     private int atk;//攻击力
     private int def;//防御力
+	private int crit = 0;//暴击率（1~100）
+	private double critValue = 1.0;//暴击效果
 	private Monster monster;//此处创建一个monster变量，此变量放在栈内存中
 	
 	public Hero(Monster monster, String name, int[] attr){
@@ -21,6 +23,13 @@ public class Hero implements Fight{
 
 	public void fighting(int hp){
         if(hp > 0){
+			int atk;
+        	//判断是否暴击
+        	if(Math.random()*100 < crit){
+        		atk = (int)(this.atk * critValue);
+			}else{
+        		atk = this.atk;
+			}
 			//怪物所受伤害值
 			int harm;
 			if(atk > monster.def){
@@ -36,4 +45,9 @@ public class Hero implements Fight{
 			System.out.println("战斗结束，你被第" + monster.getNum() + "个怪物打死了！");
 		}
     }
+
+    public void getEquipment(Equipment equipment){
+		System.out.println("恭喜你获得了装备：" + equipment.name);
+		atk = (int)(atk * equipment.atkRate);
+	}
 }
