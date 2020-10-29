@@ -2,21 +2,36 @@ import java.util.*;
 
 public class Start{
 
+	static final int LvNum = 6;//关卡数
+	static final int[] monsterNum = {10, 8, 6, 4 ,2 ,1};//每关的怪物数
+	static Monster[][] monster = new Monster[LvNum][];
+	
     public static void main(String[] args){
-		Monster monster = new Monster();
-		Hero hero = new Hero(monster, inputName(), inputAttr());
-		System.out.println("请输入野怪的血量、攻击力、防御力");
-		int[] attr = inputAttr();
-        monster.setAttr("小哥布林", 4, attr);//设置初始怪物
-		String[] otherName = {"中哥布林", "大哥布林", "哥布林投矛手", "哥布林硬汉", "果冻冻"};
-		int[] otherAmount = {4, 3, 2, 1, 1};
-		int[][] otherAttr = new int[otherName.length][];
-		otherAttr[0] = increaseAttr(attr, 1.3);
-		otherAttr[1] = increaseAttr(attr, 1.5);
-		otherAttr[2] = increaseAttr(attr, 1.8);
-		otherAttr[3] = increaseAttr(attr, 2.0);
-		otherAttr[4] = increaseAttr(attr, 800.0);
-		monster.add(otherName, otherAmount, otherAttr);
+		
+		String[] nameGather = {"小哥布林", "大哥布林", "哥布林团伙", "哥布林硬汉", "哥布林巨人", "果冻冻"};//每关的怪物名
+		
+		for(int i = 0; i < LvNum; i++){
+			monster[i] = new Monster[monsterNum[i]];
+		}
+		
+		Hero hero = new Hero(monster[0], inputName(), inputAttr());
+		System.out.println("请输入初始野怪的血量、攻击力、防御力");
+		
+		int[] initialAttr = inputAttr();//输入怪物初始属性
+		int[][] attrGather = new int[LvNum][];//用来保存每一关的怪物属性
+		attrGather[0] = initialAttr;//如果要改动，就要改动前面的三个量！！！分别是LvNum,monsterNum,nameGather
+		attrGather[1] = increaseAttr(initialAttr, 2.0);
+		attrGather[2] = increaseAttr(initialAttr, 5.0);
+		attrGather[3] = increaseAttr(initialAttr, 10.0);
+		attrGather[4] = increaseAttr(initialAttr, 20.0);
+		attrGather[5] = increaseAttr(initialAttr, 999.0);
+		
+        for(int i = 0; i < LvNum; i++){
+			for(int j = 0; j < monsterNum[i]; j++){
+				//赋给monster对象中有同一关卡中每个怪物名字、位数、属性、
+				monster[i][j] = new Monster(nameGather[i], j + 1, attrGather[i]);
+			}
+		}
 		
         hero.fight();//开始战斗
     }

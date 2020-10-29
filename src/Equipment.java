@@ -1,5 +1,6 @@
 public class Equipment{
 	//分别为装备名字，攻击增减率，防御增减率，暴击，暴击效果
+	//因为不能卖装备，所以加了些负面buff
 	private final Object[][] equipment = {{"麻痹戒指", 1.4, 1.4, -10, 0.8}, 
 	                                      {"暴击弓", 1.1, 1.0, 10, 1.2}, 
 										  {"开天辟地锤", 1.2, 1.0, 5, 1.2},
@@ -13,39 +14,39 @@ public class Equipment{
 		int places = (int)(Math.random() * equipment.length);
 		switch (places){
 			case 0:{
-				System.out.println("        💍" + "\n" +
+				System.out.println("      💍" + "\n" +
 				                   "    ╰─┬┬─╯");
 				break;
 			}case 1:{
-				System.out.println("        🏹" + "\n" +
+				System.out.println("      🏹" + "\n" +
 						     	   "    ╰─┬┬─╯");
 				break;
 			}case 2:{
-				System.out.println("        🔨" + "\n" +
+				System.out.println("      🔨" + "\n" +
 								   "    ╰─┬┬─╯");
 				break;
 			}case 3:{
-			    System.out.println("        🔪" + "\n" +
+			    System.out.println("      🔪" + "\n" +
 								   "    ╰─┬┬─╯");
 				break;
 			}case 4:{
-				System.out.println("        🥊" + "\n" +
+				System.out.println("      🥊" + "\n" +
 								   "    ╰─┬┬─╯");
 				break;
 			}case 5:{
-				System.out.println("        ☂️" + "\n" +
+				System.out.println("      ☂️" + "\n" +
 								   "    ╰─┬┬─╯");
 				break;
 			}case 6:{
-				System.out.println("        🗡️" + "\n" +
+				System.out.println("      🗡️" + "\n" +
 								   "    ╰─┬┬─╯");
 				break;
 			}case 7:{
-				System.out.println("        ⚔️" + "\n" +
+				System.out.println("      ⚔️" + "\n" +
 								   "    ╰─┬┬─╯");
 				break;
 			}case 8:{
-				System.out.println("        🔫" + "\n" +
+				System.out.println("      🔫" + "\n" +
 								   "    ╰─┬┬─╯");
 				break;
 			}
