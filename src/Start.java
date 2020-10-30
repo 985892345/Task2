@@ -14,17 +14,18 @@ public class Start{
 			monster[i] = new Monster[monsterNum[i]];
 		}
 		
-		Hero hero = new Hero(monster[0], inputName(), inputAttr());
+		Hero hero = new Hero(monster[0], inputName(), inputAttr(1));
+
 		System.out.println("请输入初始野怪的血量、攻击力、防御力");
-		
-		int[] initialAttr = inputAttr();//输入怪物初始属性
+		int[] initialAttr = inputAttr(1);//输入怪物初始属性
 		int[][] attrGather = new int[LvNum][];//用来保存每一关的怪物属性
+
 		attrGather[0] = initialAttr;//如果要改动，就要改动前面的2个量！！！分别是monsterNum,nameGather
-		attrGather[1] = increaseAttr(initialAttr, 2.0);
-		attrGather[2] = increaseAttr(initialAttr, 5.0);
-		attrGather[3] = increaseAttr(initialAttr, 10.0);
-		attrGather[4] = increaseAttr(initialAttr, 100.0);
-		attrGather[5] = increaseAttr(initialAttr, 999.0);
+		attrGather[1] = increaseAttr(initialAttr, 5.0);
+		attrGather[2] = increaseAttr(initialAttr, 10.0);
+		attrGather[3] = increaseAttr(initialAttr, 20.0);
+		attrGather[4] = increaseAttr(initialAttr, 30.0);
+		attrGather[5] = increaseAttr(initialAttr, 100.0);
 		
         for(int i = 0; i < LvNum; i++){
 			for(int j = 0; j < monsterNum[i]; j++){
@@ -37,25 +38,51 @@ public class Start{
     }
 
 	//输入英雄名字
-    public static String inputName(){
+    private static String inputName(){
         System.out.println("请输入英雄名字：");
         return new Scanner(System.in).next();
     }
 
 	//输入属性
-    public static int[] inputAttr(){
-        int[] attribute = new int[3];
-        System.out.println("请输入血量（500 ≤ 血量 ≤ 8000）：");
-        attribute[0] = new Scanner(System.in).nextInt();
-        System.out.println("请输入攻击力（100 ≤ 攻击 ≤ 600）：");
-        attribute[1] = new Scanner(System.in).nextInt();
-        System.out.println("请输入防御力（50 ≤ 防御 ≤ 100）：");
-        attribute[2] = new Scanner(System.in).nextInt();
+	private static int[] attribute = new int[3];
+    private static int[] inputAttr(int i){
+        if(i == 1){
+			System.out.println("请输入血量（500 ≤ 血量 ≤ 50000）：");
+			int hp = new Scanner(System.in).nextInt();
+			if(hp >= 500 && hp <= 50000){
+				attribute[0] = hp;
+				inputAttr(2);
+			}else{
+				System.out.println("超出范围！请重新输入");
+				inputAttr(1);
+			}
+		}
+        if(i == 2){
+			System.out.println("请输入攻击力（100 ≤ 攻击 ≤ 1000）：");
+			int atk = new Scanner(System.in).nextInt();
+			if(atk >= 100 && atk <= 1000){
+				attribute[1] = atk;
+				inputAttr(3);
+			}else{
+				System.out.println("超出范围！请重新输入");
+				inputAttr(2);
+			}
+		}
+		if(i == 3){
+			System.out.println("请输入防御力（50 ≤ 防御 ≤ 500）：");
+			int def = new Scanner(System.in).nextInt();
+			if(def >= 50 && def <= 500){
+				attribute[2] = def;
+			}else{
+				System.out.println("超出范围！请重新输入");
+				inputAttr(3);
+			}
+		}
         return attribute;
     }
 	
 	//该方法用于提升下一个关的怪物属性，是以初始怪物为基准，提升一个倍数
-	public static int[] increaseAttr(int[] attr, double multiple){
+	private static int[] increaseAttr(int[] attr, double multiple){
 		int[] attribute = new int[attr.length];//重新定义个数组，如果直接返回attr会出问题
 		for(int i = 0; i < attr.length; i++)
 			attribute[i] = (int)(multiple * attr[i]);
