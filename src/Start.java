@@ -2,8 +2,8 @@ import java.util.*;
 
 public class Start{
 
-	static final int LvNum = 6;//关卡数
 	static final int[] monsterNum = {10, 8, 6, 4 ,2 ,1};//每关的怪物数
+	static final int LvNum = monsterNum.length;//关卡数
 	static Monster[][] monster = new Monster[LvNum][];
 	
     public static void main(String[] args){
@@ -19,7 +19,7 @@ public class Start{
 		
 		int[] initialAttr = inputAttr();//输入怪物初始属性
 		int[][] attrGather = new int[LvNum][];//用来保存每一关的怪物属性
-		attrGather[0] = initialAttr;//如果要改动，就要改动前面的三个量！！！分别是LvNum,monsterNum,nameGather
+		attrGather[0] = initialAttr;//如果要改动，就要改动前面的2个量！！！分别是monsterNum,nameGather
 		attrGather[1] = increaseAttr(initialAttr, 2.0);
 		attrGather[2] = increaseAttr(initialAttr, 5.0);
 		attrGather[3] = increaseAttr(initialAttr, 10.0);

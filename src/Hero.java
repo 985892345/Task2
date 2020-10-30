@@ -10,7 +10,7 @@ public class Hero implements Fight{
 	private Monster[] monster;//此处创建一个monster变量，此变量放在栈内存中
 	private int mortality = 0;//记录一个关卡里的死亡数
 	private int nowLvNum = 1;//当前关卡
-	private int monsterHp;
+	private int monsterHp;//怪物总血量
 	
 	public Hero(Monster[] monster, String name, int[] attr){
 		this.monster = monster;//传入第一关的怪物
@@ -21,13 +21,13 @@ public class Hero implements Fight{
 	}
 	//修改Hero类中怪物关卡为下一关卡
 	public void setMonster(Monster[] monster){
-		this.monster = monster;
-		monsterHp = monster[0].hp;
+		this.monster = monster;//保存下一关怪物初始血量
+		monsterHp = monster[0].getHp();
 	}
-	//加载战斗
+	//加载战斗，写进第一关怪物
 	public void fight(){
-	    monsterHp = monster[0].hp;
-		fighting(hp, 0);//此处hp为传入英雄初始血量，再传入第一关怪物数量
+	    monsterHp = monster[0].getHp();//保存第一关怪物初始血量
+		fighting(hp, 0);//此处hp为传入英雄初始血量，0是为了启动111行代码
 	}
 	//开始战斗
 	private int places = 0;//记录当前怪物位数
@@ -39,8 +39,8 @@ public class Hero implements Fight{
 			    //printHp中分别对应名字，当前血量，总血量，打印的长度
 			    printHp(name, hp, this.hp, 130);
 				for(int i = 0; i < monster.length; i++){
-					if(monster[i].hp > 0){
-						printHp("第" + (i + 1) + "个" + monster[0].name, monster[i].hp, monsterHp, 70);
+					if(monster[i].getHp() > 0){
+						printHp("第" + (i + 1) + "个" + monster[0].getName(), monster[i].getHp(), monsterHp, 70);
 					}
 				}
 			    monsterPlaces = 0;
@@ -60,23 +60,22 @@ public class Hero implements Fight{
 				//怪物所受伤害值
 				int harm;
 				//英雄攻击大于怪物防御
-				if(atk > monster[places].def){
+				if(atk > monster[0].getDef()){
 					//加入随机数表示上下浮动的伤害
-					harm = atk - monster[places].def + (int)(Math.random() * (-atk / 25.0) + (atk / 50.0));
-					monster[places].hp -= harm;
-				//英雄攻击小于等于怪物防御
+					harm = atk - monster[0].getDef() + (int)(Math.random() * (-atk / 25.0) + (atk / 50.0));
+					//英雄攻击小于等于怪物防御
 				}else{
 					harm = 1;
-					monster[places].hp--;
 				}
+				monster[places].setHp(harm);
 				//如果怪物只有一个，就不输出“对第几个”
 				System.out.println(monster.length != 1 ? 
-								   name + "对第" + (places + 1) + "个" + monster[places].name + "造成" + harm + "点伤害" :
-								   name + "对" + monster[places].name + "造成" + harm + "点伤害");
+								   name + "对第" + (places + 1) + "个" + monster[0].getName() + "造成" + harm + "点伤害" :
+								   name + "对" + monster[0].getName() + "造成" + harm + "点伤害");
 								   
 
 				//如果打死了一个怪物，判断是否是当前关卡最后一个
-				if(monster[places].hp <= 0){
+				if(monster[places].getHp() <= 0){
 					//这个三目运算用来判断是否是打赢了boss
 					System.out.println(nowLvNum != Start.LvNum ? 
 									   "终于打死第" + (places + 1) + "个怪物了" :
@@ -116,14 +115,14 @@ public class Hero implements Fight{
 				System.out.println("————哎！，我说过你是打不赢我的！哈哈哈哈～～～～哈哈哈哈～～～～" + "\n");
 				System.out.println("————结果总是悲剧的，她太强了，我还是打不赢管理员，不行我得重新设置属性，我就不信我打不赢她！");
 			}else{
-				System.out.println("战斗结束，你被第" + monsterPlaces + "个" + monster[monsterPlaces - 1].name + "打死了！");
+				System.out.println("战斗结束，你被第" + monsterPlaces + "个" + monster[0].getName() + "打死了！");
 			}
 		}
     }
 
     public void getEquipment(){
 		//物品掉落率
-		int dropRate = 3;//1~10
+		int dropRate = 5;//1~10
 		if(Math.random() * 10 < dropRate){
 			//数组分别为装备名字，攻击增减率，防御增减率，暴击，暴击效果
     		Object[] equipment = new Equipment().equipment();
