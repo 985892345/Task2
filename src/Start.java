@@ -8,7 +8,7 @@ public class Start{
 	
     public static void main(String[] args){
 		
-		String[] nameGather = {"小哥布林", "大哥布林", "哥布林团伙", "哥布林硬汉", "哥布林巨人", "果冻冻"};//每关的怪物名
+		String[] nameGather = {"骷髅兵💀", "恶魔👿", "长鼻子怪👺", "恐怖外星人👽", "面相怪杰👹", "果冻冻🤖"};//每关的怪物名
 		
 		for(int i = 0; i < LvNum; i++){
 			monster[i] = new Monster[monsterNum[i]];
@@ -23,7 +23,7 @@ public class Start{
 		attrGather[1] = increaseAttr(initialAttr, 2.0);
 		attrGather[2] = increaseAttr(initialAttr, 5.0);
 		attrGather[3] = increaseAttr(initialAttr, 10.0);
-		attrGather[4] = increaseAttr(initialAttr, 20.0);
+		attrGather[4] = increaseAttr(initialAttr, 100.0);
 		attrGather[5] = increaseAttr(initialAttr, 999.0);
 		
         for(int i = 0; i < LvNum; i++){
@@ -45,11 +45,11 @@ public class Start{
 	//输入属性
     public static int[] inputAttr(){
         int[] attribute = new int[3];
-        System.out.println("请输入血量：");
+        System.out.println("请输入血量（500 ≤ 血量 ≤ 8000）：");
         attribute[0] = new Scanner(System.in).nextInt();
-        System.out.println("请输入攻击力：");
+        System.out.println("请输入攻击力（100 ≤ 攻击 ≤ 600）：");
         attribute[1] = new Scanner(System.in).nextInt();
-        System.out.println("请输入防御力：");
+        System.out.println("请输入防御力（50 ≤ 防御 ≤ 100）：");
         attribute[2] = new Scanner(System.in).nextInt();
         return attribute;
     }

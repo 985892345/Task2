@@ -7,6 +7,7 @@ public class Hero implements Fight{
     private int def;//防御力
 	private int crit = 20;//暴击率（1~100）
 	private double critValue = 1.3;//暴击效果
+	private int dodge = 0;//闪避率（1~100）
 	private Monster[] monster;//此处创建一个monster变量，此变量放在栈内存中
 	private int mortality = 0;//记录一个关卡里的死亡数
 	private int nowLvNum = 1;//当前关卡
@@ -14,7 +15,7 @@ public class Hero implements Fight{
 	
 	public Hero(Monster[] monster, String name, int[] attr){
 		this.monster = monster;//传入第一关的怪物
-		this.name = name;
+		this.name = "👨‍" + name;
 		hp = attr[0];
 		atk = attr[1];
 		def = attr[2];
@@ -108,21 +109,23 @@ public class Hero implements Fight{
 				}
 			}
 			//分别调用每个Monster类的对象，用monsterPlaces来判断怪物位数
-			monster[monsterPlaces].fighting(this, name, hp, def, nowLvNum);
+			monster[monsterPlaces].fighting(this, name, hp, def, nowLvNum, dodge);
         }else{//英雄死亡
 		    printHp(name, hp, this.hp, 40);
 			if(nowLvNum == Start.LvNum){
 				System.out.println("————哎！，我说过你是打不赢我的！哈哈哈哈～～～～哈哈哈哈～～～～" + "\n");
 				System.out.println("————结果总是悲剧的，她太强了，我还是打不赢管理员，不行我得重新设置属性，我就不信我打不赢她！");
+				new Scanner(System.in).nextLine();
 			}else{
 				System.out.println("战斗结束，你被第" + monsterPlaces + "个" + monster[0].getName() + "打死了！");
 			}
+			System.exit(0);
 		}
     }
 
     public void getEquipment(){
 		//物品掉落率
-		int dropRate = 5;//1~10
+		int dropRate = 3;//1~10
 		if(Math.random() * 10 < dropRate){
 			//数组分别为装备名字，攻击增减率，防御增减率，暴击，暴击效果
     		Object[] equipment = new Equipment().equipment();
@@ -141,6 +144,7 @@ public class Hero implements Fight{
 			}else{
 				System.out.println("暴击率：" + crit + "%→" + "60%");
 				System.out.println("******暴击率已满，最高为60%，可以选择卖掉装备！******");
+				crit = 60;
 			}
 			//暴击效果
 			if(critValue * (double)equipment[4] <= 2.0){
@@ -148,8 +152,17 @@ public class Hero implements Fight{
 				critValue *= (double)equipment[4];
 			}else{
 				System.out.println("暴击效果：" + critValue * 100 + "%→" + "200%");
-				critValue = 2.0;
 				System.out.println("******暴击效果已满，最高为200%，可以选择卖掉装备！******");
+				critValue = 2.0;
+			}
+			//闪避率
+			if(dodge + (int)equipment[5] <= 30){
+				System.out.println("闪避率：" + dodge + "%→" + (dodge + (int)equipment[5]) + "%");
+				dodge += (int)equipment[5];
+			}else{
+				System.out.println("闪避率：" + dodge + "%→" + "30%");
+				System.out.println("******闪避率率已满，最高为30%，可以选择卖掉装备！******");
+				dodge = 30;
 			}
 		}
 	}
