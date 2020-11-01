@@ -47,12 +47,12 @@ public class FightProcess {
             if (monsters.size() == 0) {
                 if (Lv <= Start.totalLv - 1)
                     System.out.println("\n恭喜你进入下一关");
-                if (Lv == Start.totalLv - 1)
-                    boss();
-                if (Math.random() * 10 < 4){
+                if (Math.random() * 10 < 5){
                     System.out.println("\n恭喜你获得了一个新英雄!");
                     Start.createHero(heroes);
                 }
+                if (Lv == Start.totalLv - 1)
+                    boss();
                 Start.createMonster(monsters, ++Lv);//加载Lv+1关的怪物
             }else {
                 System.out.println("\n现在是怪物的回合");
@@ -62,7 +62,7 @@ public class FightProcess {
                         int index = (int)(Math.random() * heroes.size());
                         monsters.get(i).fight(heroes.get(index));
                         if (heroes.get(index).getHp() <= 0) {
-                            System.out.println("你的英雄" + heroes.get(index).getName() + "被第" + (index + 1) + "个" + monsters.get(i).getName() + "打死了");
+                            System.out.println("你的英雄" + heroes.get(index).getName() + "被第" + i + "个" + monsters.get(i).getName() + "打死了");
                             heroes.remove(index);
                         }
                     }
@@ -178,7 +178,7 @@ public class FightProcess {
     private void attrIncrease(int who, Equipment delete, Equipment change) {
         int atk = heroes.get(who).getAtk();
         int def = heroes.get(who).getDef();
-        int hp = heroes.get(who).getHp();
+        int hpMax = heroes.get(who).getHpMax();
         int crit = heroes.get(who).getCrit();
         int critValue = heroes.get(who).getCritValue();
         int dodge = heroes.get(who).getDodge();
@@ -190,8 +190,8 @@ public class FightProcess {
         System.out.println("防御力：" + def + "→" + (int)(def / delete.getDefRate() * change.getDefRate()));
         heroes.get(who).setDef((int)(def / delete.getDefRate() * change.getDefRate()));
         //血量
-        System.out.println("血量：" + hp + "→" + (int)(hp / delete.getHpRate() * change.getHpRate()));
-        heroes.get(who).setHp((int)(hp / delete.getHpRate() * change.getHpRate()));
+        System.out.println("血量：" + hpMax + "→" + (int)(hpMax / delete.getHpRate() * change.getHpRate()));
+        heroes.get(who).setHpMax((int)(hpMax / delete.getHpRate() * change.getHpRate()));
         //暴击率
         if(crit - delete.getCrit() + change.getCrit() <= 60){
             System.out.println("暴击率：" + crit + "%→" + (crit - delete.getCrit() + change.getCrit()) + "%");

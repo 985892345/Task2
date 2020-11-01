@@ -23,10 +23,11 @@ public class Hero implements HeroInterface {
     public String getName() { return name; }
 
     public int getHpMax() { return hpMax; }
+    public void setHpMax(int hp) { hpMax = hp; attr[0] += (hpMax - attr[0]) / 10; }
     public int getHp() { return attr[0]; }
+
     @Override
-    public void getHarm(int harm) { attr[0] -= harm; }
-    public void setHp(int hp) { attr[0] = hp; }
+    public void setHp(int harm) { attr[0] -= harm; }
 
     public int getAtk(){ return attr[1]; }
     public void setAtk(int atk){ attr[1] = atk; }

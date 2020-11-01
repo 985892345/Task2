@@ -29,34 +29,34 @@ public class Start {
     public static int totalLv = 6;
     public static void createMonster(ArrayList<Monster> monsters, int Lv) {
             if (Lv == 1){
-                int num = (int)(Math.random() * 4 + 8);
-                for (int i = 0; i < num; i++)
-                    monsters.add(new Monster(i, "骷髅兵💀", initialMonsterAttr));
-                monsters.add(new Monster(num, "恶魔👿", increaseAttr(initialMonsterAttr, 5)));
-            }
-            if (Lv == 2){
                 int num = (int)(Math.random() * 4 + 6);
                 for (int i = 0; i < num; i++)
-                    monsters.add(new Monster(i, "恶魔👿", increaseAttr(initialMonsterAttr, 5)));
-                monsters.add(new Monster(num, "长鼻子怪👺", increaseAttr(initialMonsterAttr, 10)));
+                    monsters.add(new Monster(i, "骷髅兵💀", initialMonsterAttr));
+                monsters.add(new Monster(num, "恶魔👿", increaseAttr(initialMonsterAttr, 3)));
+            }
+            if (Lv == 2){
+                int num = (int)(Math.random() * 4 + 4);
+                for (int i = 0; i < num; i++)
+                    monsters.add(new Monster(i, "恶魔👿", increaseAttr(initialMonsterAttr, 3)));
+                monsters.add(new Monster(num, "长鼻子怪👺", increaseAttr(initialMonsterAttr, 5)));
             }
             if (Lv == 3){
-                int num = (int)(Math.random() * 4 + 4);
+                int num = (int)(Math.random() * 4 + 3);
                 for (int i = 0; i < (int)(Math.random() * 4 + 4); i++)
-                    monsters.add(new Monster(i, "长鼻子怪👺", increaseAttr(initialMonsterAttr, 10)));
-                monsters.add(new Monster(num, "恐怖外星人👽", increaseAttr(initialMonsterAttr, 20)));
+                    monsters.add(new Monster(i, "长鼻子怪👺", increaseAttr(initialMonsterAttr, 5)));
+                monsters.add(new Monster(num, "恐怖外星人👽", increaseAttr(initialMonsterAttr, 8)));
             }
             if (Lv == 4){
                 int num = (int)(Math.random() * 4 + 2);
                 for (int i = 0; i < (int)(Math.random() * 4 + 2); i++)
-                    monsters.add(new Monster(i, "恐怖外星人👽", increaseAttr(initialMonsterAttr, 20)));
-                monsters.add(new Monster(num, "面相怪杰👹", increaseAttr(initialMonsterAttr, 30)));
+                    monsters.add(new Monster(i, "恐怖外星人👽", increaseAttr(initialMonsterAttr, 8)));
+                monsters.add(new Monster(num, "面相怪杰👹", increaseAttr(initialMonsterAttr, 12)));
             }
             if (Lv == 5)
                 for (int i = 0; i < (int)(Math.random() * 4 + 1); i++)
-                    monsters.add(new Monster(i, "面相怪杰👹", increaseAttr(initialMonsterAttr, 30)));
+                    monsters.add(new Monster(i, "面相怪杰👹", increaseAttr(initialMonsterAttr, 12)));
             if (Lv == 6)
-                monsters.add(new Monster(1,"果冻冻🤖", increaseAttr(initialMonsterAttr, 100)));
+                monsters.add(new Monster(1,"果冻冻🤖", increaseAttr(initialMonsterAttr, 20)));
     }
 
     //控制台输入属性

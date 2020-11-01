@@ -60,7 +60,7 @@ public class Monster implements MonsterInterface {
                 harm = 1;
             }
             System.out.println("第" + index + "个" + name + "对你的英雄" + hero.getName() + "造成" + harm + "点伤害");
-            hero.getHarm(harm);
+            hero.setHp(harm);
         }
     }
 }

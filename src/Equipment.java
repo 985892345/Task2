@@ -130,7 +130,7 @@ class the5 extends Equipment{
 
 class the6 extends Equipment{
 	public the6() {
-		super(6,"生命之伞",1.0,1.3,1.3,0,0,13,"  ☂️\n╰─┬┬─╯");
+		super(6,"生命之伞",1.0,1.3,1.3,0,0,9,"  ☂️\n╰─┬┬─╯");
 	}
 }
 
@@ -154,6 +154,6 @@ class the9 extends Equipment{
 
 class the10 extends Equipment{
 	public the10() {
-		super(10,"安全帽",1.0,1.5,1.2,-5,8,5,"  ⛑️\n╰─┬┬─╯");
+		super(10,"安全帽",1.0,1.5,1.2,0,0,8,"  ⛑️\n╰─┬┬─╯");
 	}
 }
