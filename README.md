@@ -1,9 +1,9 @@
 # Task2
-### Start类：
+## Start类：
 1. 用ArrayList创造Hero、Monster类多个实例  
 2. 初始化Hero、Monster数据
 3. 将Hero、Monster对象传入FightProcess类
-### FightProcess
+## FightProcess类：
 1. startFight()，写了多打多的战斗逻辑  
    1. while (heroes.size() != 0 && Lv <= Start.totalLv)， 判断英雄是否被全部打死或者是否超过总关卡数 
       1. for (Hero hero : heroes) 英雄先进攻———>调用英雄类里的战斗方法，并传入Monster实例
@@ -17,9 +17,9 @@
 5. putOn()， 穿上装备
 6. attrIncrease()， 改动穿上装备后的英雄属性
 7. sell()， 出售装备
-### Hero
+## Hero类：
 1. fight()， 让传进来的Monster实例通过接口调用setHp()
-### Monster
+## Monster类：
 1. fight()， 让传进来的Hero实例通过接口调用setHp()
-### Equipment
+## Equipment类：
 装备类，方便管理装备
