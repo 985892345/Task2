@@ -49,6 +49,7 @@ public class Monster implements MonsterInterface {
 
     @Override
     public void fight(HeroInterface hero) {
+        //判断英雄能否闪避
         if(Math.random()*100 < hero.getDodge()){
             System.out.println("哈哈，你就是打不打我！（成功躲开怪物攻击）");
         }else{

@@ -1,5 +1,5 @@
 public class Equipment{
-	//分别为装备位置，名字，攻击增减率，防御增减率，暴击，暴击效果，闪避率
+	//分别为装备位置，名字，打印的图标，攻击增减率，防御增减率，血量增减率，暴击，暴击效果，闪避率，装备等级
 	private final int index;
 	private final String name;
 	private final String print;

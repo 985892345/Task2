@@ -18,12 +18,14 @@ public class Start {
         fightProcess.startFight();
     }
 
+    //创造英雄
     public static void createHero(ArrayList<Hero> heroes) {
         System.out.println("请输入英雄名字：");
         String name = new Scanner(System.in).nextLine();
         heroes.add(new Hero(name, inputAttr()));
     }
 
+    //创造怪物
     public static int totalLv = 6;
     public static void createMonster(ArrayList<Monster> monsters, int Lv) {
             if (Lv == 1){
@@ -57,6 +59,7 @@ public class Start {
                 monsters.add(new Monster(1,"果冻冻🤖", increaseAttr(initialMonsterAttr, 100)));
     }
 
+    //控制台输入属性
     public static int[] inputAttr() {
         Scanner input = new Scanner(System.in);
         System.out.println("请输入血量（500 ≤ 血量 ≤ 20000）：");

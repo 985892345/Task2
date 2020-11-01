@@ -23,6 +23,7 @@ public class FightProcess {
                 Scanner input= new Scanner(System.in);
                 String in = input.nextLine();
                 int index;
+                //防止输错位数
                 if (isNum(in)){
                     index = Integer.parseInt(in) - 1;
                     while (index > monsters.size()){
@@ -33,6 +34,7 @@ public class FightProcess {
                     index = (int)(Math.random() * monsters.size());
                 }
                 hero.fight(monsters.get(index));
+                //判断英雄打的index位怪物是否被打死
                 if (monsters.get(index).getHp() <= 0) {
                     System.out.println("你的英雄" + hero.getName() + "打死了第" + (index + 1) + "个" + monsters.get(index).getName());
                     monsters.remove(index);
@@ -67,8 +69,10 @@ public class FightProcess {
                 }
             }
         }
+        //如果英雄全死亡
         if (heroes.size() == 0)
             System.out.println("GAME OVER!");
+        //如果Lv数大于总关数即通关
         if (Lv > Start.totalLv)
             System.out.println("果冻冻被你的英雄斩于刀下!\n————哈哈哈哈，区区管理员，也不过如此!\n恭喜你，你成功通过本游戏！");
     }
@@ -94,6 +98,7 @@ public class FightProcess {
         return s.chars().allMatch(Character::isDigit);
     }
 
+    //随机返回装备
     private Equipment returnEquip(){
         Equipment returnEquipment = new Empty();
         int index = (int) (Math.random() * 10);
@@ -121,7 +126,7 @@ public class FightProcess {
         return returnEquipment;
     }
 
-    //得到装备
+    //判断能否得到装备
     private int amount = 0;//装备槽里放的装备数
     public void getEquipment() {
         Equipment[] moreEquipment = new Equipment[12];//能带的装备数量
@@ -146,6 +151,7 @@ public class FightProcess {
         }
     }
 
+    //穿上装备
     private void putOn(Equipment equipment) {
         for (int i = 0; i < heroes.size(); i++){
             System.out.println("你的英雄" + heroes.get(i).getName() + "有以下装备：");
@@ -168,6 +174,7 @@ public class FightProcess {
         }
     }
 
+    //穿上装备后的英雄属性提升
     private void attrIncrease(int who, Equipment delete, Equipment change) {
         int atk = heroes.get(who).getAtk();
         int def = heroes.get(who).getDef();
@@ -215,10 +222,12 @@ public class FightProcess {
         new Scanner(System.in).nextLine();
     }
 
+    //出售装备
     private void sell() {
         System.out.println("写的太累了，暂时未开通");
     }
 
+    //最后一关遇到boss的对话
     private void boss() {
         Scanner input = new Scanner(System.in);
         System.out.println("\n轰轰轰！轰轰轰！\n————咦？这是怎么了？（按回车继续）");

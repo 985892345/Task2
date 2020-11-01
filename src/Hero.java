@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Hero implements HeroInterface {
     private final String name;//名字
     private final int hp;//没有装备时的固定血量
