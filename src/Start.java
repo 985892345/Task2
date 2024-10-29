@@ -74,6 +74,7 @@ public class Start {
               hp = input.nextInt();
           } catch (InputMismatchException e) {
               System.out.println("非法输入");
+              input.nextLine();
           }
           if (hp > 20000 || hp < 500) {
               System.out.println("请输入范围内的血量!");
@@ -88,6 +89,7 @@ public class Start {
                 atk = input.nextInt();
             } catch (InputMismatchException e) {
                 System.out.println("非法输入");
+                input.nextLine();
             }
             if (atk > 400 || atk < 100) {
                 System.out.println("请输入范围内的攻击力!");
@@ -102,6 +104,7 @@ public class Start {
                 def = input.nextInt();
             } catch (InputMismatchException e) {
                 System.out.println("非法输入");
+                input.nextLine();
             }
             if (def > 200 || def < 50) {
                 System.out.println("请输入范围内的攻击力!");
