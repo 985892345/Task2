@@ -33,14 +33,16 @@ public class FightProcess {
                 }else {
                     index = (int)(Math.random() * monsters.size());
                 }
-                hero.fight(monsters.get(index));
-                //判断英雄打的index位怪物是否被打死
-                if (monsters.get(index).getHp() <= 0) {
-                    System.out.println("你的英雄" + hero.getName() + "打死了第" + (index + 1) + "个" + monsters.get(index).getName());
-                    monsters.remove(index);
-                    getEquipment();
-                    for (int j = index; j < monsters.size(); j++)
-                        monsters.get(j).setIndex(j + 1);
+                if (!monsters.isEmpty()) {
+                    hero.fight(monsters.get(index));
+                    //判断英雄打的index位怪物是否被打死
+                    if (monsters.get(index).getHp() <= 0) {
+                        System.out.println("你的英雄" + hero.getName() + "打死了第" + (index + 1) + "个" + monsters.get(index).getName());
+                        monsters.remove(index);
+                        getEquipment();
+                        for (int j = index; j < monsters.size(); j++)
+                            monsters.get(j).setIndex(j + 1);
+                    }
                 }
             }
             //如果当前关卡怪物全死亡
