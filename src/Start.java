@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Start {
@@ -22,6 +23,10 @@ public class Start {
     public static void createHero(ArrayList<Hero> heroes) {
         System.out.println("请输入英雄名字：");
         String name = new Scanner(System.in).nextLine();
+        while (name.isEmpty()) {
+            System.out.println("名字不允许为空！");
+            name = new Scanner(System.in).nextLine();
+        }
         heroes.add(new Hero(name, inputAttr()));
     }
 
@@ -63,22 +68,46 @@ public class Start {
     public static int[] inputAttr() {
         Scanner input = new Scanner(System.in);
         System.out.println("请输入血量（500 ≤ 血量 ≤ 20000）：");
-        int hp = input.nextInt();
-        while (hp > 20000 || hp < 500) {
-            System.out.println("请输入范围内的血量!");
-            hp = input.nextInt();
+        int hp = 0;
+        while (true) {
+          try {
+              hp = input.nextInt();
+          } catch (InputMismatchException e) {
+              System.out.println("非法输入");
+          }
+          if (hp > 20000 || hp < 500) {
+              System.out.println("请输入范围内的血量!");
+          } else {
+              break;
+          }
         }
         System.out.println("请输入攻击力（100 ≤ 攻击 ≤ 400）：");
-        int atk = input.nextInt();
-        while (atk > 400 || atk < 100) {
-            System.out.println("请输入范围内的攻击力!");
-            atk = input.nextInt();
+        int atk = 0;
+        while (true) {
+            try {
+                atk = input.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("非法输入");
+            }
+            if (atk > 400 || atk < 100) {
+                System.out.println("请输入范围内的攻击力!");
+            } else {
+                break;
+            }
         }
         System.out.println("请输入防御力（50 ≤ 防御 ≤ 200）：");
-        int def = input.nextInt();
-        while (def > 200 || def < 50) {
-            System.out.println("请输入范围内的攻击力!");
-            def = input.nextInt();
+        int def = 0;
+        while (true) {
+            try {
+                def = input.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("非法输入");
+            }
+            if (def > 200 || def < 50) {
+                System.out.println("请输入范围内的攻击力!");
+            } else {
+                break;
+            }
         }
         return new int[]{hp, atk, def};
     }
